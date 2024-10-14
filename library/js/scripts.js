@@ -27,6 +27,25 @@ FUNCTIONS
 
 jQuery(document).ready(function($) {
 
+/* Custom Cursor  */
+
+const verticalLine = document.getElementById('verticalLine');
+const horizontalLine = document.getElementById('horizontalLine');
+const verticalDiv = document.getElementById('verticalDiv');
+const horizontalDiv = document.getElementById('horizontalDiv');
+
+document.addEventListener('mousemove', function(event) {
+  const x = event.clientX;
+  const y = event.clientY;
+
+  verticalLine.style.left = x + 'px';
+  verticalDiv.style.left = (x +10) + 'px';
+  verticalDiv.textContent = `[X: ${x}]`;
+
+  horizontalLine.style.top = y + 'px';
+  horizontalDiv.style.top = (y + 10) + 'px';
+  horizontalDiv.textContent = `[Y: ${y}]`;
+});
   
 /* MOBILE NAV */
 

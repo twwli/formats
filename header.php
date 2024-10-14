@@ -40,6 +40,10 @@
 	</head>
 	
 	<body id="<?php echo isset($post) ? $post->post_name . '-page' : '404-page'; ?>" <?php body_class(); ?>>
+	<div id="verticalLine" class="line"></div>
+    <div id="horizontalLine" class="line"></div>
+	<div id="verticalDiv">X: 0</div>
+    <div id="horizontalDiv">Y: 0</div>
     <?php // Page transitions ?>
     <script>
       document.body.classList.add('fade');

@@ -86,6 +86,7 @@ body {
     text-rendering: optimizelegibility;
     font-size: 100%;
     font-weight: 400;
+    min-height: 100vh;
 }
 
 body {
@@ -152,6 +153,43 @@ a {
 	-ms-transition: all 200ms ease-in;
 	-o-transition: all 200ms ease-in;
 	transition: all 200ms ease-in;
+}
+
+
+/* Custom Cursor */
+
+.line {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  pointer-events: none; /* Empêche d'interagir avec les lignes */
+}
+
+#verticalLine {
+  width: 1px;
+  height: 100vh; /* Ligne verticale sur toute la hauteur */
+}
+
+#horizontalLine {
+  height: 1px;
+  width: 100vw; /* Ligne horizontale sur toute la largeur */
+}
+
+#verticalDiv, #horizontalDiv {
+  position: absolute;
+font-family: monospace;
+  color: rgba(0, 0, 0, 0.8);
+  pointer-events: none; /* Empêche d'interagir avec les divs */
+}
+
+#verticalDiv {
+position: absolute;
+bottom: 10px;
+}
+
+#horizontalDiv {
+position: absolute;
+right: 10px;
+
 }
 
 

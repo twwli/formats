@@ -1,23 +1,4 @@
 <?php
-/* Welcome to formats :)
-This is the core formats file where most of the
-main functions & features reside. If you have
-any custom functions, it's best to put them
-in the functions.php file.
-
-Developed by: Eddie Machado
-URL: http://themble.com/formats/
-
-  - head cleanup (remove rsd, uri links, junk css, ect)
-  - enqueueing scripts & styles
-  - theme support functions
-  - custom menu output & fallbacks
-  - related post function
-  - page-navi function
-  - removing <p> from around images
-  - customizing the post excerpt
-
-*/
 
 /*********************
 WP_HEAD GOODNESS
@@ -124,17 +105,12 @@ function formats_scripts_and_styles() {
 
   if (!is_admin()) {
 
-		// modernizr (without media query polyfill)
-		wp_register_script( 'formats-modernizr', get_stylesheet_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array(), '2.5.3', false );
-
 		// register main stylesheet
 		wp_register_style( 'formats-stylesheet', get_stylesheet_directory_uri() . '/library/css/style.css', array(), '', 'all' );
+		wp_register_style( 'lisaa-stylesheet', get_stylesheet_directory_uri() . '/library/lisaa.css', array(), '', 'all' );
 		
 		// Line Icon: https://icons8.com/line-awesome
 		wp_register_style( 'line-icon', '//maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css', array(), '', 'all');
-		
-		// ie-only style sheet
-		wp_register_style( 'formats-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
 
     // comment reply script for threaded comments
     if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
@@ -151,9 +127,8 @@ function formats_scripts_and_styles() {
 		wp_register_script( 'formats-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
 
 		// enqueue styles and scripts
-		wp_enqueue_script( 'formats-modernizr' );
 		wp_enqueue_style( 'formats-stylesheet' );
-		wp_enqueue_style( 'formats-ie-only' );
+		wp_enqueue_style( 'lisaa-stylesheet' );
 
 		$wp_styles->add_data( 'formats-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
 
