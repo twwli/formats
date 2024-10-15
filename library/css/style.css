@@ -494,9 +494,19 @@ Flip Cards
 
 .card-content button {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 7px;
+  right: 6px;
+  width: 32px;
+  height: 36px;
   cursor: pointer;
+  background-color: transparent;
+}
+
+.card-content button svg {
+  display: block;
+  width: 32px;
+  height: 36px;
+  pointer-events: none;
 }
 
 .card-back {
@@ -506,6 +516,15 @@ Flip Cards
 
 .flipped .card-content {
   transform: rotateY(180deg);
+}
+
+.triangle-black {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+  opacity: .5;
+  pointer-events: none;
 }
 
 /* ==========================================================================

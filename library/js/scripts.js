@@ -18,13 +18,15 @@ document.addEventListener('DOMContentLoaded', function () {
   let draggedItem = null;
   let offsetX = 0;
   let offsetY = 0;
+  let zIndexCounter = 1; // Compteur pour z-index
 
   // Fonction pour sauvegarder la position dans le localStorage
   function savePosition(cardContainer) {
     const cardId = cardContainer.getAttribute('data-id');
     const position = {
       left: cardContainer.style.left,
-      top: cardContainer.style.top
+      top: cardContainer.style.top,
+      zIndex: cardContainer.style.zIndex
     };
     localStorage.setItem(cardId, JSON.stringify(position));
   }
@@ -37,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const position = JSON.parse(savedPosition);
       cardContainer.style.left = position.left;
       cardContainer.style.top = position.top;
+      cardContainer.style.zIndex = position.zIndex; // Restaurer le z-index
     }
   }
 
@@ -62,13 +65,17 @@ document.addEventListener('DOMContentLoaded', function () {
       draggedItem = cardContainer;
       offsetX = e.clientX - cardContainer.offsetLeft;
       offsetY = e.clientY - cardContainer.offsetTop;
+
+      // Augmenter le z-index de la carte pour qu'elle passe au premier plan
+      zIndexCounter++;
+      cardContainer.style.zIndex = zIndexCounter;
       cardContainer.style.cursor = 'grabbing';
     });
 
     // Mouse up - arrêter le drag
     document.addEventListener('mouseup', function () {
       if (isDragging && draggedItem) {
-        savePosition(draggedItem);  // Sauvegarder la position lorsqu'on arrête de déplacer
+        savePosition(draggedItem);  // Sauvegarder la position et le z-index
         draggedItem.style.cursor = 'grab';
         draggedItem = null;
       }
@@ -86,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-
 
 /****************************************************
 DETECT iOS BROWSER
