@@ -25,7 +25,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
 
 		<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/library/images/apple-touch-icon.png">
-		<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/favicon.png">
+		<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/favicon.svg">
 		<!--[if IE]>
 			<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
 		<![endif]-->
