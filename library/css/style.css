@@ -86,7 +86,9 @@ body {
     text-rendering: optimizelegibility;
     font-size: 100%;
     font-weight: 400;
-    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
 body {
@@ -581,6 +583,18 @@ Theme Media Queries
 @media only screen 
   and (min-device-width : 320px) 
   and (max-device-width : 480px) {
+
+    #verticalLine, #horizontalLine, #verticalDiv, #horizontalDiv {
+      display: none;
+    }
+
+    .card-container {
+      position: relative !important;
+      top: auto !important;
+      left: 50% !important;
+      transform: translateX(-50%);
+      margin: 0 auto;
+    }
 }
 
 /* Smartphones (landscape) ----------- */

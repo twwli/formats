@@ -5,7 +5,6 @@ WEBSITE PRELOADER
 $(window).on('load', function() { // makes sure the whole site is loaded 
   $('#status').fadeOut(); // will first fade out the loading animation 
   $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
-  $('body').delay(350).css({'overflow':'visible'});
 });
 
 /****************************************************
@@ -84,7 +83,11 @@ document.addEventListener('DOMContentLoaded', function () {
       // Placer la carte au premier plan en augmentant le z-index global
       zIndexCounter++;
       cardContainer.style.zIndex = zIndexCounter;
+      // Forcer le recalcul du style
+      cardContainer.offsetHeight; // Forcer le navigateur à recalculer les styles
+
       cardContainer.style.cursor = 'grabbing';
+      console.log(`Card ${cardContainer.getAttribute('data-id')} is now on top with zIndex ${zIndexCounter}`);
     });
 
     // Mouse up - arrêter le drag
@@ -104,10 +107,18 @@ document.addEventListener('DOMContentLoaded', function () {
         const y = e.clientY - offsetY;
         draggedItem.style.left = `${x}px`;
         draggedItem.style.top = `${y}px`;
+
+        // Remettre la carte au premier plan si elle est déplacée
+        if (draggedItem.style.zIndex != zIndexCounter) {
+          zIndexCounter++;
+          draggedItem.style.zIndex = zIndexCounter;
+          console.log(`Card ${draggedItem.getAttribute('data-id')} zIndex updated to ${zIndexCounter}`);
+        }
       }
     });
   });
 });
+
 
 
 /****************************************************
