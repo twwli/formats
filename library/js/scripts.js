@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let draggedItem = null;
   let offsetX = 0;
   let offsetY = 0;
-  let zIndexCounter = 1; // Compteur global pour z-index
+  let zIndexCounter = 1; // Compteur global pour z-index, commence à 1
   const delay = 300; // Délai en millisecondes pour la fermeture des cartes
 
   // Fonction pour sauvegarder la position dans le localStorage
@@ -82,12 +82,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Placer la carte au premier plan en augmentant le z-index global
       zIndexCounter++;
-      cardContainer.style.zIndex = zIndexCounter;
-      // Forcer le recalcul du style
-      cardContainer.offsetHeight; // Forcer le navigateur à recalculer les styles
+      draggedItem.style.zIndex = zIndexCounter;
 
-      cardContainer.style.cursor = 'grabbing';
-      console.log(`Card ${cardContainer.getAttribute('data-id')} is now on top with zIndex ${zIndexCounter}`);
+      // Assurez-vous que le navigateur applique le style immédiatement
+      draggedItem.offsetHeight; // Forcer le recalcul du style
+
+      draggedItem.style.cursor = 'grabbing';
+      console.log(`Card ${draggedItem.getAttribute('data-id')} is now on top with zIndex ${zIndexCounter}`);
     });
 
     // Mouse up - arrêter le drag
@@ -109,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
         draggedItem.style.top = `${y}px`;
 
         // Remettre la carte au premier plan si elle est déplacée
-        if (draggedItem.style.zIndex != zIndexCounter) {
+        if (parseInt(draggedItem.style.zIndex) < zIndexCounter) {
           zIndexCounter++;
           draggedItem.style.zIndex = zIndexCounter;
           console.log(`Card ${draggedItem.getAttribute('data-id')} zIndex updated to ${zIndexCounter}`);
@@ -118,8 +119,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-
-
 
 /****************************************************
 DETECT iOS BROWSER
