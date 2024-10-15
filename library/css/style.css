@@ -192,11 +192,10 @@ a {
 	transition: all 200ms ease-in;
 }
 
-
 /* Custom Cursor */
 
 .line {
-  position: absolute;
+  position: fixed;
   background-color: rgba(255, 255, 255, 0.8);
   mix-blend-mode: difference;
   pointer-events: none; /* Empêche d'interagir avec les lignes */
@@ -204,29 +203,30 @@ a {
 }
 
 #verticalLine {
-  width: 1px;
+  width: .5px;
   height: 100vh; /* Ligne verticale sur toute la hauteur */
 }
 
 #horizontalLine {
-  height: 1px;
+  height: .5px;
   width: 100vw; /* Ligne horizontale sur toute la largeur */
 }
 
 #verticalDiv, #horizontalDiv {
-  position: absolute;
-font-family: monospace;
-  color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  font-size: .825em;
+  color: rgba(255, 255, 255, 0.8);
+  mix-blend-mode: difference;
   pointer-events: none; /* Empêche d'interagir avec les divs */
+  white-space: no-wrap;
+  z-index: 999;
 }
 
 #verticalDiv {
-position: absolute;
 bottom: 10px;
 }
 
 #horizontalDiv {
-position: absolute;
 right: 10px;
 }
 
@@ -435,6 +435,14 @@ MOBILE NAV
 #mobile-nav li.anim {
 	opacity: 1;
   visibility: visible;
+}
+
+/* ==========================================================================
+Header & Footer
+========================================================================== */
+
+footer {
+  display: none;
 }
 
 /* ==========================================================================

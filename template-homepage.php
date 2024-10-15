@@ -8,7 +8,7 @@
 
 <main class="cards-wrapper">
   <!-- Exemple pour plusieurs cartes -->
-  <div class="card-container" data-id="card1" style="position: absolute;">
+  <div class="card-container" data-id="card1" style="position: absolute; transform: rotate(-8deg)">
     <div class="card-content" style="width: 200px; height: 262px;">
       <div class="card-front">
         <img src="<?php echo get_template_directory_uri(); ?>/library/images/test.webp" />
