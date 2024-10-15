@@ -47,8 +47,6 @@
     <script>
       document.body.classList.add('fade');
     </script>
-    
-		<div id="container">
 
 			<header class="header" role="banner" itemscope itemtype="http://schema.org/WPHeader">
 
