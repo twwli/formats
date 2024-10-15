@@ -18,7 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
   let draggedItem = null;
   let offsetX = 0;
   let offsetY = 0;
-  let zIndexCounter = 1; // Compteur pour z-index
+  let zIndexCounter = 1; // Compteur global pour z-index
+  const delay = 300; // Délai en millisecondes pour la fermeture des cartes
 
   // Fonction pour sauvegarder la position dans le localStorage
   function savePosition(cardContainer) {
@@ -43,10 +44,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Fonction pour fermer toutes les cartes (enlever la classe 'flipped')
+  // Fonction pour fermer toutes les cartes (enlever la classe 'flipped' avec délai)
   function closeAllCards() {
     cardContainers.forEach(card => {
-      card.classList.remove('flipped');
+      if (card.classList.contains('flipped')) {
+        setTimeout(() => {
+          card.classList.remove('flipped');
+        }, delay); // Appliquer un délai avant de fermer la carte
+      }
     });
   }
 
@@ -59,8 +64,10 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.target.tagName === 'BUTTON') {
         const action = e.target.getAttribute('data-action');
         if (action === 'flip-to-back') {
-          closeAllCards(); // Fermer toutes les autres cartes
-          cardContainer.classList.add('flipped'); // Retourner la carte actuelle
+          closeAllCards(); // Fermer toutes les autres cartes avec délai
+          setTimeout(() => {
+            cardContainer.classList.add('flipped'); // Retourner la carte actuelle après la fermeture des autres
+          }, delay);
         } else if (action === 'flip-to-front') {
           cardContainer.classList.remove('flipped'); // Fermer la carte actuelle
         }
@@ -74,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
       offsetX = e.clientX - cardContainer.offsetLeft;
       offsetY = e.clientY - cardContainer.offsetTop;
 
-      // Augmenter le z-index de la carte pour qu'elle passe au premier plan
+      // Placer la carte au premier plan en augmentant le z-index global
       zIndexCounter++;
       cardContainer.style.zIndex = zIndexCounter;
       cardContainer.style.cursor = 'grabbing';
@@ -101,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
 
 /****************************************************
 DETECT iOS BROWSER

@@ -46,12 +46,12 @@
             <?php endwhile; ?> 
 		    <?php } ?>
             
-            <?php $value = get_sub_field('back_card'); 
+            <?php $value = get_field('back_card'); 
             if( $value ) { ?>
             <?php while( have_rows('back_card') ): the_row(); ?>
             <div class="card-back">
                 <?php 
-				$image = get_sub_field('image_recto');
+				$image = get_sub_field('image_verso');
 				$size = 'full';
 				if( $image ) {
 					echo wp_get_attachment_image( $image, $size, false, array( 'class' => 'project-img', 'loading' => 'lazy' ) );

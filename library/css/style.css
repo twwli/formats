@@ -441,6 +441,17 @@ MOBILE NAV
 Header & Footer
 ========================================================================== */
 
+header {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  border-bottom: .5px solid rgba(0, 0, 0, .9);
+}
+
 footer {
   display: none;
 }
@@ -484,11 +495,12 @@ Flip Cards
   justify-content: center;
 }
 
-.card-front {
+/* .card-front {
   background-color: #ccc;
-}
+} */
 
-.card-front img {
+.card-front img,
+.card-back img  {
   pointer-events: none;
 }
 
@@ -510,7 +522,7 @@ Flip Cards
 }
 
 .card-back {
-  background-color: #777;
+  background-color: #111;
   transform: rotateY(180deg);
 }
 
