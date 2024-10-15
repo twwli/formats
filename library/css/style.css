@@ -52,7 +52,7 @@ input, button, textarea, select {
 }
 
 input {
-	-webkit-appearance: none;
+	appearance: none;
 }
 
 audio, canvas, iframe, img, svg, video {
@@ -78,7 +78,7 @@ Theme Custom Style
 }
 
 body {
-    font-family: "Work Sans","Helvetica",sans-serif;
+    font-family: "DM Mono", monospace;
     color: var(--main-color);
     line-height: 1.45em;
     -webkit-font-smoothing: antialiased; 
@@ -133,6 +133,43 @@ img {
 }
 
 /* TYPOGRAPHY */
+
+.dm-mono-light {
+  font-family: "DM Mono", monospace;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.dm-mono-regular {
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.dm-mono-medium {
+  font-family: "DM Mono", monospace;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.dm-mono-light-italic {
+  font-family: "DM Mono", monospace;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.dm-mono-regular-italic {
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.dm-mono-medium-italic {
+  font-family: "DM Mono", monospace;
+  font-weight: 500;
+  font-style: italic;
+}
+
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
