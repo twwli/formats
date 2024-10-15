@@ -43,6 +43,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  // Fonction pour fermer toutes les cartes (enlever la classe 'flipped')
+  function closeAllCards() {
+    cardContainers.forEach(card => {
+      card.classList.remove('flipped');
+    });
+  }
+
   // Appliquer la position stockée pour chaque carte au chargement
   cardContainers.forEach(cardContainer => {
     restorePosition(cardContainer);
@@ -52,9 +59,10 @@ document.addEventListener('DOMContentLoaded', function () {
       if (e.target.tagName === 'BUTTON') {
         const action = e.target.getAttribute('data-action');
         if (action === 'flip-to-back') {
-          cardContainer.classList.add('flipped');
+          closeAllCards(); // Fermer toutes les autres cartes
+          cardContainer.classList.add('flipped'); // Retourner la carte actuelle
         } else if (action === 'flip-to-front') {
-          cardContainer.classList.remove('flipped');
+          cardContainer.classList.remove('flipped'); // Fermer la carte actuelle
         }
       }
     });
