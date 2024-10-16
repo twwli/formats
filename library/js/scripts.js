@@ -128,16 +128,16 @@ document.addEventListener('DOMContentLoaded', function () {
     cardContainers.forEach(card => {
       const categoriesAttr = card.getAttribute('data-categories');
       if (categoriesAttr) {
-        const categories = categoriesAttr.split(','); // Si l'attribut existe, le diviser en tableau
+        const categories = categoriesAttr.split(',');
 
-        // Vérification si la carte appartient à la catégorie sélectionnée
-        if (category === 'all' || categories.includes(category)) {
-          card.style.display = 'block'; // Afficher la carte
+        // Vérification spéciale pour la catégorie "all"
+        if (category === 'all' || categories.includes('all') || categories.includes(category)) {
+          card.style.display = 'block'; // Afficher la carte si "all" ou la catégorie correspond
         } else {
-          card.style.display = 'none'; // Cacher la carte
+          card.style.display = 'none'; // Cacher la carte si elle ne correspond pas
         }
       } else {
-        card.style.display = 'none'; // Si la carte n'a pas de catégories, on la cache
+        card.style.display = 'none'; // Cacher la carte si elle n'a pas de catégories
       }
     });
   }
@@ -152,6 +152,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Initialisation : afficher toutes les cartes au départ
   filterCards('all');
+});
+
+
+/* Open iframes */
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Écouter les événements de clic sur les boutons "More info"
+  document.querySelectorAll('.open-details').forEach(button => {
+    button.addEventListener('click', function () {
+      const targetId = this.getAttribute('data-target');
+      const targetDiv = document.getElementById(targetId);
+
+      // Ouvrir la div correspondante
+      if (targetDiv) {
+        targetDiv.classList.add('active');
+      }
+    });
+  });
+
+  // Écouter les événements de clic sur les boutons "Close"
+  document.querySelectorAll('.close-details').forEach(button => {
+    button.addEventListener('click', function () {
+      const targetId = this.getAttribute('data-target');
+      const targetDiv = document.getElementById(targetId);
+
+      // Fermer la div correspondante
+      if (targetDiv) {
+        targetDiv.classList.remove('active');
+      }
+    });
+  });
 });
 
 
