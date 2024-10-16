@@ -118,40 +118,94 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 /* Filtre */
-
 document.addEventListener('DOMContentLoaded', function () {
-  const cardContainers = document.querySelectorAll('.card-container');
-  const filterMenu = document.getElementById('filter-menu');
+  let selectedCategories = []; // Stocker les catégories sélectionnées
 
-  // Fonction pour afficher les cartes correspondant à la catégorie sélectionnée
-  function filterCards(category) {
-    cardContainers.forEach(card => {
-      const categoriesAttr = card.getAttribute('data-categories');
-      if (categoriesAttr) {
-        const categories = categoriesAttr.split(',');
+  // Gestion des filtres ouverts/fermés
+  document.querySelectorAll('.filter-trigger').forEach(trigger => {
+      trigger.addEventListener('click', function () {
+          const isActive = this.classList.contains('is-active');
 
-        // Vérification spéciale pour la catégorie "all"
-        if (category === 'all' || categories.includes('all') || categories.includes(category)) {
-          card.style.display = 'block'; // Afficher la carte si "all" ou la catégorie correspond
-        } else {
-          card.style.display = 'none'; // Cacher la carte si elle ne correspond pas
-        }
-      } else {
-        card.style.display = 'none'; // Cacher la carte si elle n'a pas de catégories
-      }
-    });
-  }
+          // Fermer toutes les autres listes
+          document.querySelectorAll('.filter-trigger').forEach(otherTrigger => {
+              otherTrigger.classList.remove('is-active');
+              const filterList = otherTrigger.nextElementSibling;
+              if (filterList && filterList.classList.contains('filter-list')) {
+                  filterList.style.display = 'none'; // Fermer la liste si elle existe
+              }
+          });
 
-  // Écouteur pour les boutons de filtre
-  filterMenu.addEventListener('click', function (e) {
-    if (e.target.tagName === 'BUTTON') {
-      const filter = e.target.getAttribute('data-filter');
-      filterCards(filter); // Appliquer le filtre sélectionné
-    }
+          // Ouvrir/fermer la liste cliquée
+          const currentFilterList = this.nextElementSibling;
+          if (!isActive && currentFilterList && currentFilterList.classList.contains('filter-list')) {
+              this.classList.add('is-active');
+              currentFilterList.style.display = 'flex'; // Ouvrir la liste cliquée
+          }
+      });
   });
 
-  // Initialisation : afficher toutes les cartes au départ
-  filterCards('all');
+  // Fonction pour gérer l'état des catégories sélectionnées
+  function toggleCategory(category) {
+      const index = selectedCategories.indexOf(category);
+
+      if (index > -1) {
+          // Si la catégorie est déjà sélectionnée, on la retire
+          selectedCategories.splice(index, 1);
+      } else {
+          // Sinon, on l'ajoute
+          selectedCategories.push(category);
+      }
+  }
+
+  // Fonction pour afficher les cartes correspondant aux catégories sélectionnées
+  function filterCards() {
+      console.log("Selected categories:", selectedCategories); // Debugging
+
+      document.querySelectorAll('.card-container').forEach(card => {
+          const categoriesAttr = card.getAttribute('data-categories');
+          if (categoriesAttr) {
+              const categories = categoriesAttr.split(',');
+
+              // Si "all" est sélectionné ou aucune catégorie n'est activée, afficher toutes les cartes
+              if (selectedCategories.includes('all') || selectedCategories.length === 0) {
+                  card.style.display = 'block';
+                  return;
+              }
+
+              // Vérifier si la carte correspond à toutes les catégories sélectionnées
+              const matchesCategory = selectedCategories.every(category => categories.includes(category));
+
+              if (matchesCategory) {
+                  card.style.display = 'block';
+              } else {
+                  card.style.display = 'none';
+              }
+          } else {
+              card.style.display = 'none';
+          }
+      });
+  }
+
+  // Gestion du clic sur les boutons de filtre dans les listes
+  document.querySelectorAll('.filter-list button').forEach(button => {
+      button.addEventListener('click', function () {
+          this.classList.toggle('active'); // Basculer l'état "actif" du bouton
+          const category = this.getAttribute('data-filter');
+          toggleCategory(category); // Mettre à jour l'état des catégories
+          filterCards(); // Appliquer les filtres
+      });
+  });
+
+  // Gestion du bouton "Tous"
+  document.querySelector('.filter-all button').addEventListener('click', function () {
+      // Réinitialiser tous les filtres
+      selectedCategories = ['all'];
+      document.querySelectorAll('.filter-list button').forEach(button => button.classList.remove('active'));
+      filterCards(); // Afficher toutes les cartes
+  });
+
+  // Initialiser en affichant toutes les cartes
+  filterCards();
 });
 
 

@@ -452,6 +452,7 @@ header {
   left: 0;
   z-index: 999;
   border-bottom: .5px solid rgba(0, 0, 0, .9);
+  pointer-events: none;
 }
 
 footer {
@@ -517,6 +518,17 @@ Flip Cards
   background-color: transparent;
 }
 
+.card-content button.open-details {
+  position: absolute;
+  top: 6px;
+  right: 5px;
+}
+
+.enlarge-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
 .card-content button svg {
   display: block;
   width: 32px;
@@ -544,12 +556,7 @@ Flip Cards
 
 /* Filter */
 
-#filter-menu {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 999;
-}
+
 
 /* iframes */
 

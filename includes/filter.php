@@ -1,5 +1,11 @@
 <div id="filter-menu">
     <div class="filter-block">
+        <div class="filter-trigger">
+            <span>
+                <svg fill="none" height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg"><path d="m6.58363 2.87132v9.12868h-1.5v-9.12868l-4.02297 4.02298-1.06066-1.06065 5.83363-5.83365 5.83367 5.83365-1.0607 1.06065z" fill="#000"/></svg>
+            </span>
+            <h3>Éditions</h3>
+        </div>
         <div class="filter-list">
             <button data-filter="lamousseeditions">La mousse éditions</button>
             <button data-filter="ecal">Écal</button>
@@ -10,16 +16,15 @@
             <button data-filter="editiondelalizarine">Éditions de l’Alizarine</button>
             <button data-filter="editionb42">Edition B42</button>
         </div>
-
-        <div class="filter-trigger">
-            <span>
-                <svg fill="none" height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg"><path d="m6.58363 2.87132v9.12868h-1.5v-9.12868l-4.02297 4.02298-1.06066-1.06065 5.83363-5.83365 5.83367 5.83365-1.0607 1.06065z" fill="#000"/></svg>
-            </span>
-            <h3>Éditions</h3>
-        </div>
     </div>
 
     <div class="filter-block">
+        <div class="filter-trigger">
+            <span>
+            <svg fill="none" height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg"><path d="m6.58363 2.87132v9.12868h-1.5v-9.12868l-4.02297 4.02298-1.06066-1.06065 5.83363-5.83365 5.83367 5.83365-1.0607 1.06065z" fill="#000"/></svg>
+            </span>
+            <h3>Lieux</h3>
+        </div>
         <div class="filter-list">
             <button data-filter="shadok">Shadok</button>
             <button data-filter="hear">HEAR</button>
@@ -29,28 +34,20 @@
             <button data-filter="bnu">BNU</button>
             <button data-filter="lamenuiserie">La Menuiserie</button>
         </div>
-
-        <div class="filter-trigger">
-            <span>
-            <svg fill="none" height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg"><path d="m6.58363 2.87132v9.12868h-1.5v-9.12868l-4.02297 4.02298-1.06066-1.06065 5.83363-5.83365 5.83367 5.83365-1.0607 1.06065z" fill="#000"/></svg>
-            </span>
-            <h3>Lieux</h3>
-        </div>
     </div>
 
     <div class="filter-block">
-        <div class="filter-list">
-            <button data-filter="conferences">Conférences</button>
-            <button data-filter="expositions">Expositions</button>
-            <button data-filter="salongraphique">Salon graphique</button>
-            <button data-filter="ateliers">Ateliers</button>
-        </div>
-
         <div class="filter-trigger">
             <span>
             <svg fill="none" height="12" viewBox="0 0 12 12" width="12" xmlns="http://www.w3.org/2000/svg"><path d="m6.58363 2.87132v9.12868h-1.5v-9.12868l-4.02297 4.02298-1.06066-1.06065 5.83363-5.83365 5.83367 5.83365-1.0607 1.06065z" fill="#000"/></svg>
             </span>
             <h3>Événements</h3>
+        </div>
+        <div class="filter-list">
+            <button data-filter="conferences">Conférences</button>
+            <button data-filter="expositions">Expositions</button>
+            <button data-filter="salongraphique">Salon graphique</button>
+            <button data-filter="ateliers">Ateliers</button>
         </div>
     </div>
 
@@ -89,18 +86,27 @@
 
     .filter-trigger span {
         margin-right: 8px;
+        transition: .3s transform;
+    }
+
+    .filter-trigger.is-active span {
+        transform: rotate(180deg);
     }
 
     .filter-list {
-        position: absolute;
-        display: flex;
+        display: none; /* Cacher les listes par défaut */
         flex-direction: column;
+        position: absolute;
         top: -8px;
         transform: translateY(-100%);
         width: 254px;
         padding: 4px 16px;
         line-height: 1.75em;
         background-color: #fff;
+    }
+
+    .filter-trigger.is-active + .filter-list {
+        display: flex; /* Afficher la liste de filtres quand .filter-trigger est active */
     }
 
     .filter-list button,
@@ -115,4 +121,9 @@
         align-items: center;
         padding: 8px 0 16px;
     }
+
+    .filter-all button svg {
+        margin-left: 8px;
+    }
+
 </style>
