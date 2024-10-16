@@ -1,7 +1,7 @@
 <?php $value = get_field('front_card');
     if( $value ) { ?>
     <?php while( have_rows('front_card') ): the_row(); ?>
-        <div class="card-container" data-id="card<?php echo get_the_ID(); ?>" style="<?php $value = get_sub_field('position_card');
+        <div class="card-container" data-id="card<?php echo get_the_ID(); ?>" data-categories="<?php $tags = get_sub_field( 'tags_card' ); if( $tags ): echo implode( ', ', $tags ); endif; ?>" style="<?php $value = get_sub_field('position_card');
     if( $value ) { ?><?php while( have_rows('position_card') ): the_row(); ?>position: absolute; top: <?php the_sub_field('top_position'); ?>px;left: <?php the_sub_field('bottom_position'); ?>px;<?php endwhile; ?><?php } ?>transform: rotate(<?php the_sub_field('angle_card'); ?>deg)">
             <div class="card-content" style="width: <?php the_sub_field('width_card'); ?>px; height: <?php the_sub_field('height_card'); ?>px;">
             <div class="card-front">
@@ -29,6 +29,9 @@
             if( $value ) { ?>
             <?php while( have_rows('back_card') ): the_row(); ?>
             <div class="card-back">
+                <div class="enlarge-btn">
+                <svg fill="#fff" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M344 0L488 0c13.3 0 24 10.7 24 24l0 144c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-39-39-87 87c-9.4 9.4-24.6 9.4-33.9 0l-32-32c-9.4-9.4-9.4-24.6 0-33.9l87-87L327 41c-6.9-6.9-8.9-17.2-5.2-26.2S334.3 0 344 0zM168 512L24 512c-13.3 0-24-10.7-24-24L0 344c0-9.7 5.8-18.5 14.8-22.2s19.3-1.7 26.2 5.2l39 39 87-87c9.4-9.4 24.6-9.4 33.9 0l32 32c9.4 9.4 9.4 24.6 0 33.9l-87 87 39 39c6.9 6.9 8.9 17.2 5.2 26.2s-12.5 14.8-22.2 14.8z"/></svg>
+                </div>
                 <?php 
 				$image = get_sub_field('image_verso');
 				$size = 'full';
@@ -53,3 +56,19 @@
 
             </div>
         </div>
+
+
+        <style>
+            .enlarge-btn {
+                position: absolute;
+                top: 6px;
+                right: 6px;
+            }
+
+            .enlarge-btn svg {
+                width: 24px;
+                height: 24px;
+            }
+
+
+        </style>

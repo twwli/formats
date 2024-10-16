@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', function () {
   let zIndexCounter = 1; // Compteur global pour z-index, commence à 1
   const delay = 300; // Délai en millisecondes pour la fermeture des cartes
 
+  // Initialisation du z-index de toutes les cartes pour qu'elles démarrent toutes avec une valeur valide
+  cardContainers.forEach((cardContainer, index) => {
+    cardContainer.style.zIndex = index + 1; // Chaque carte démarre avec un z-index unique
+  });
+
   // Fonction pour sauvegarder la position dans le localStorage
   function savePosition(cardContainer) {
     const cardId = cardContainer.getAttribute('data-id');
@@ -84,9 +89,6 @@ document.addEventListener('DOMContentLoaded', function () {
       zIndexCounter++;
       draggedItem.style.zIndex = zIndexCounter;
 
-      // Assurez-vous que le navigateur applique le style immédiatement
-      draggedItem.offsetHeight; // Forcer le recalcul du style
-
       draggedItem.style.cursor = 'grabbing';
       console.log(`Card ${draggedItem.getAttribute('data-id')} is now on top with zIndex ${zIndexCounter}`);
     });
@@ -108,17 +110,50 @@ document.addEventListener('DOMContentLoaded', function () {
         const y = e.clientY - offsetY;
         draggedItem.style.left = `${x}px`;
         draggedItem.style.top = `${y}px`;
-
-        // Remettre la carte au premier plan si elle est déplacée
-        if (parseInt(draggedItem.style.zIndex) < zIndexCounter) {
-          zIndexCounter++;
-          draggedItem.style.zIndex = zIndexCounter;
-          console.log(`Card ${draggedItem.getAttribute('data-id')} zIndex updated to ${zIndexCounter}`);
-        }
       }
     });
   });
 });
+
+
+
+/* Filtre */
+
+document.addEventListener('DOMContentLoaded', function () {
+  const cardContainers = document.querySelectorAll('.card-container');
+  const filterMenu = document.getElementById('filter-menu');
+
+  // Fonction pour afficher les cartes correspondant à la catégorie sélectionnée
+  function filterCards(category) {
+    cardContainers.forEach(card => {
+      const categoriesAttr = card.getAttribute('data-categories');
+      if (categoriesAttr) {
+        const categories = categoriesAttr.split(','); // Si l'attribut existe, le diviser en tableau
+
+        // Vérification si la carte appartient à la catégorie sélectionnée
+        if (category === 'all' || categories.includes(category)) {
+          card.style.display = 'block'; // Afficher la carte
+        } else {
+          card.style.display = 'none'; // Cacher la carte
+        }
+      } else {
+        card.style.display = 'none'; // Si la carte n'a pas de catégories, on la cache
+      }
+    });
+  }
+
+  // Écouteur pour les boutons de filtre
+  filterMenu.addEventListener('click', function (e) {
+    if (e.target.tagName === 'BUTTON') {
+      const filter = e.target.getAttribute('data-filter');
+      filterCards(filter); // Appliquer le filtre sélectionné
+    }
+  });
+
+  // Initialisation : afficher toutes les cartes au départ
+  filterCards('all');
+});
+
 
 /****************************************************
 DETECT iOS BROWSER

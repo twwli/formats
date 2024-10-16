@@ -33,10 +33,7 @@
     ?>
         
     <?php endwhile; rewind_posts(); wp_reset_query(); endif; ?>
-
-
-
-
+<!--
     <?php
     $args = array(
         'post_type' => 'custom_card',
@@ -49,11 +46,18 @@
     if ( $wp_query->have_posts() ) :
     while ( $wp_query->have_posts() ) : $wp_query->the_post();  ?> 
 
-        <div id="" class="">
-
-
+        <div id="" class="extended-view">
+            Vue étendue
         </div>
         
     <?php endwhile; rewind_posts(); wp_reset_query(); endif; ?>
+    -->
+
+    <div id="filter-menu">
+    <button data-filter="design">Design</button>
+    <button data-filter="emilie">Émilie</button>
+    <button data-filter="atelier">Atelier</button>
+    <button data-filter="all">Tous</button>
+    </div>
 </main>
 <?php get_footer(); ?>

@@ -47,63 +47,13 @@ function custom_post_example() {
 	); /* end of register Card */
 	
 	/* this adds your post categories to your Card type */
-	register_taxonomy_for_object_type( 'category', 'custom_card' );
+	// register_taxonomy_for_object_type( 'category', 'custom_card' );
 	/* this adds your post tags to your Card type */
-	register_taxonomy_for_object_type( 'post_tag', 'custom_card' );
+	// register_taxonomy_for_object_type( 'post_tag', 'custom_card' );
 	
 }
 
 	// adding the function to the Wordpress init
 	add_action( 'init', 'custom_post_example');
-	
-	/*
-	for more information on taxonomies, go here:
-	http://codex.wordpress.org/Function_Reference/register_taxonomy
-	*/
-	
-	// now let's add custom categories (these act like categories)
-	register_taxonomy( 'card_cat', 
-		array('custom_card'), /* if you change the name of register_post_type( 'custom_card', then you have to change this */
-		array('hierarchical' => true,     /* if this is true, it acts like categories */
-			'labels' => array(
-				'name' => __( 'Custom Categories', 'formatstheme' ), /* name of the custom taxonomy */
-				'singular_name' => __( 'Card Category', 'formatstheme' ), /* single taxonomy name */
-				'search_items' =>  __( 'Search Custom Categories', 'formatstheme' ), /* search title for taxomony */
-				'all_items' => __( 'All Custom Categories', 'formatstheme' ), /* all title for taxonomies */
-				'parent_item' => __( 'Parent Card Category', 'formatstheme' ), /* parent title for taxonomy */
-				'parent_item_colon' => __( 'Parent Card Category:', 'formatstheme' ), /* parent taxonomy title */
-				'edit_item' => __( 'Edit Card Category', 'formatstheme' ), /* edit custom taxonomy title */
-				'update_item' => __( 'Update Card Category', 'formatstheme' ), /* update title for taxonomy */
-				'add_new_item' => __( 'Add New Card Category', 'formatstheme' ), /* add new title for taxonomy */
-				'new_item_name' => __( 'New Card Category Name', 'formatstheme' ) /* name title for taxonomy */
-			),
-			'show_admin_column' => true, 
-			'show_ui' => true,
-			'query_var' => true,
-			'rewrite' => array( 'slug' => 'custom-slug' ),
-		)
-	);
-	
-	// now let's add Card Tags (these act like categories)
-	register_taxonomy( 'card_tag', 
-		array('custom_card'), /* if you change the name of register_post_type( 'custom_card', then you have to change this */
-		array('hierarchical' => false,    /* if this is false, it acts like tags */
-			'labels' => array(
-				'name' => __( 'Card Tags', 'formatstheme' ), /* name of the custom taxonomy */
-				'singular_name' => __( 'Card Tag', 'formatstheme' ), /* single taxonomy name */
-				'search_items' =>  __( 'Search Card Tags', 'formatstheme' ), /* search title for taxomony */
-				'all_items' => __( 'All Card Tags', 'formatstheme' ), /* all title for taxonomies */
-				'parent_item' => __( 'Parent Card Tag', 'formatstheme' ), /* parent title for taxonomy */
-				'parent_item_colon' => __( 'Parent Card Tag:', 'formatstheme' ), /* parent taxonomy title */
-				'edit_item' => __( 'Edit Card Tag', 'formatstheme' ), /* edit custom taxonomy title */
-				'update_item' => __( 'Update Card Tag', 'formatstheme' ), /* update title for taxonomy */
-				'add_new_item' => __( 'Add New Card Tag', 'formatstheme' ), /* add new title for taxonomy */
-				'new_item_name' => __( 'New Card Tag Name', 'formatstheme' ) /* name title for taxonomy */
-			),
-			'show_admin_column' => true,
-			'show_ui' => true,
-			'query_var' => true,
-		)
-	);
 
 ?>
