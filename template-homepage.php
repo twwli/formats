@@ -34,7 +34,8 @@
         
     <?php endwhile; rewind_posts(); wp_reset_query(); endif; ?>
 
-    
+    <?php get_template_part('/includes/iframes'); ?>
+    <?php get_template_part('/includes/filter'); ?>
 
 </main>
 <?php get_footer(); ?>

@@ -20,7 +20,7 @@
                 <iframe
                     id="project-iframe"
                     width="1280"
-                    height="750"
+                    height="720"
                     src="<?php the_sub_field('url_iframe'); ?>">
                 </iframe>
             </div>

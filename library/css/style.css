@@ -473,6 +473,7 @@ Flip Cards
   top: 0;
   left: 0;
   cursor: grab;
+  /* border: .5px solid #fff; */
 }
 
 .card-container:active {
@@ -554,6 +555,9 @@ Flip Cards
 
 .embed-container {
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   inset: 0;
   background: #fff;
   z-index: 9999;
@@ -573,7 +577,7 @@ Flip Cards
 
 .close-details {
   position: absolute;
-  top: 20px;
+  top: 10px;
   right: 20px;
   width: 30px;
   height: 30px;
