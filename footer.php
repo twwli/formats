@@ -3,7 +3,7 @@
 					<p class="copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>.</p>
 				</div>
 			</footer>
-		<?php // include (TEMPLATEPATH . '/includes/preloader.php'); ?>
+		<?php include (TEMPLATEPATH . '/includes/preloader.php'); ?>
 		<?php // include (TEMPLATEPATH . '/includes/mobile-nav.php'); ?>
 		
     <?php // End Page transitions ?>

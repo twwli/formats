@@ -541,13 +541,45 @@ Flip Cards
   pointer-events: none;
 }
 
-
+/* Filter */
 
 #filter-menu {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 999;
+}
+
+/* iframes */
+
+.embed-container {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 9999;
+}
+
+.embed-container iframe {
+  margin: 0 auto;
+}
+
+.details-div {
+  display: none; /* Masquer par défaut */
+}
+
+.details-div.active {
+  display: block !important; /* Afficher lorsque la div est active */
+}
+
+.close-details {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 99999;
 }
 
 /* ==========================================================================
