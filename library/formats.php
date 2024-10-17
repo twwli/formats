@@ -125,6 +125,7 @@ function formats_scripts_and_styles() {
 
 		//adding scripts file in the footer
 		wp_register_script( 'formats-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
+		// wp_register_script( 'formats-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
 
 		// enqueue styles and scripts
 		wp_enqueue_style( 'formats-stylesheet' );
@@ -138,6 +139,7 @@ function formats_scripts_and_styles() {
 		and your site will load faster.
 		*/
 		wp_enqueue_script( 'jquery' );
+		// wp_enqueue_script( 'lottie' );
 		wp_enqueue_script( 'formats-js' );
 
 	}

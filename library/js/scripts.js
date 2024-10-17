@@ -3,8 +3,8 @@ WEBSITE PRELOADER
 ****************************************************/
 
 $(window).on('load', function() { // makes sure the whole site is loaded 
-  $('#status').fadeOut(); // will first fade out the loading animation 
-  $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+  // $('#status').fadeOut(); // will first fade out the loading animation 
+  // $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
 });
 
 /****************************************************
@@ -118,6 +118,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 /* Filtre */
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
   let selectedCategories = []; // Stocker les catégories sélectionnées
 
@@ -146,6 +149,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Fonction pour gérer l'état des catégories sélectionnées
   function toggleCategory(category) {
+      // Si "all" est dans les catégories sélectionnées, on le retire
+      if (selectedCategories.includes('all')) {
+          selectedCategories = [];
+      }
+
       const index = selectedCategories.indexOf(category);
 
       if (index > -1) {
@@ -172,16 +180,16 @@ document.addEventListener('DOMContentLoaded', function () {
                   return;
               }
 
-              // Vérifier si la carte correspond à toutes les catégories sélectionnées
-              const matchesCategory = selectedCategories.every(category => categories.includes(category));
+              // Vérifier si la carte correspond à au moins une des catégories sélectionnées
+              const matchesCategory = selectedCategories.some(category => categories.includes(category));
 
               if (matchesCategory) {
-                  card.style.display = 'block';
+                  card.style.display = 'block'; // Afficher la carte si elle correspond à au moins une catégorie
               } else {
-                  card.style.display = 'none';
+                  card.style.display = 'none'; // Cacher la carte sinon
               }
           } else {
-              card.style.display = 'none';
+              card.style.display = 'none'; // Cacher la carte si elle n'a pas de catégories
           }
       });
   }
@@ -201,6 +209,17 @@ document.addEventListener('DOMContentLoaded', function () {
       // Réinitialiser tous les filtres
       selectedCategories = ['all'];
       document.querySelectorAll('.filter-list button').forEach(button => button.classList.remove('active'));
+
+      // Fermer toutes les listes de filtres
+      document.querySelectorAll('.filter-list').forEach(filterList => {
+          filterList.style.display = 'none';
+      });
+
+      // Retirer la classe is-active de tous les déclencheurs
+      document.querySelectorAll('.filter-trigger').forEach(trigger => {
+          trigger.classList.remove('is-active');
+      });
+
       filterCards(); // Afficher toutes les cartes
   });
 
@@ -209,6 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+  
 /* Open iframes */
 
 document.addEventListener('DOMContentLoaded', function () {

@@ -1,12 +1,12 @@
 <?php
 /*
- Template Name: One Page
+ Template Name: About Page
 */
 ?>
 
 <?php get_header(); ?>
 
-<main class="onepage page-content">
+<main class="about-page page-content">
 	<?php include (TEMPLATEPATH . '/includes/onepage-introduction.php'); ?>
 	<?php include (TEMPLATEPATH . '/includes/onepage-aboutus.php'); ?>
 </main>

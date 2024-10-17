@@ -79,6 +79,7 @@ Theme Custom Style
 
 body {
     font-family: "DM Mono", monospace;
+    background-color: #fff;
     color: var(--main-color);
     line-height: 1.45em;
     -webkit-font-smoothing: antialiased; 
@@ -444,7 +445,9 @@ Header & Footer
 ========================================================================== */
 
 header {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 10px;
   position: fixed;
@@ -453,6 +456,10 @@ header {
   z-index: 999;
   border-bottom: .5px solid rgba(0, 0, 0, .9);
   pointer-events: none;
+}
+
+header a {
+  pointer-events: all;
 }
 
 footer {
@@ -556,7 +563,91 @@ Flip Cards
 
 /* Filter */
 
+#filter-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 888;
+  font-size: 15px;
+  background-color: #fff;
+  border-top: .5px solid rgba(0,0,0,.9);
+  display: flex;
+  justify-content: space-around;
+}
 
+.filter-block {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  text-align: left;
+}
+
+.filter-trigger {
+  display: flex;
+  align-items: center;
+  padding: 8px 0 16px;
+  cursor: pointer;
+}
+
+.filter-trigger span {
+  margin-right: 8px;
+  transition: .3s transform;
+}
+
+.filter-trigger.is-active span {
+  transform: rotate(180deg);
+}
+
+.filter-list {
+  display: none; /* Cacher les listes par défaut */
+  flex-direction: column;
+  position: absolute;
+  top: -8px;
+  transform: translateY(-100%);
+  width: 254px;
+  padding: 4px 9px;
+  line-height: 1.75em;
+  background-color: #fff;
+}
+
+.filter-trigger.is-active + .filter-list {
+  display: flex; /* Afficher la liste de filtres quand .filter-trigger est active */
+}
+
+.filter-list button,
+.filter-all button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.filter-list button span{
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  margin-right: 8px;
+  background-color: white;
+
+}
+
+.filter-list button.active,
+.filter-list button.active span{
+  background-color: #015AFF;
+}
+
+.filter-all button {
+  display: flex;
+  align-items: center;
+  padding: 8px 0 16px;
+}
+
+.filter-all button svg {
+  margin-left: 8px;
+}
 
 /* iframes */
 

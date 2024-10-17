@@ -7,14 +7,14 @@
             <h3>Éditions</h3>
         </div>
         <div class="filter-list">
-            <button data-filter="lamousseeditions">La mousse éditions</button>
-            <button data-filter="ecal">Écal</button>
-            <button data-filter="hckr">HCKR</button>
-            <button data-filter="slanted">Slanted</button>
-            <button data-filter="editions205">Éditions 205</button>
-            <button data-filter="risosurmer">Riso sur mer</button>
-            <button data-filter="editiondelalizarine">Éditions de l’Alizarine</button>
-            <button data-filter="editionb42">Edition B42</button>
+            <button data-filter="lamousseeditions"><span></span> La mousse éditions</button>
+            <button data-filter="ecal"><span></span> Écal</button>
+            <button data-filter="hckr"><span></span> HCKR</button>
+            <button data-filter="slanted"><span></span> Slanted</button>
+            <button data-filter="editions205"><span></span> Éditions 205</button>
+            <button data-filter="risosurmer"><span></span> Riso sur mer</button>
+            <button data-filter="editiondelalizarine"><span></span> Éditions de l’Alizarine</button>
+            <button data-filter="editionb42"><span></span> Edition B42</button>
         </div>
     </div>
 
@@ -26,13 +26,13 @@
             <h3>Lieux</h3>
         </div>
         <div class="filter-list">
-            <button data-filter="shadok">Shadok</button>
-            <button data-filter="hear">HEAR</button>
-            <button data-filter="garagecoop">Garage COOP</button>
-            <button data-filter="palaisuniversitaire">Palais universitaire</button>
-            <button data-filter="cric">CRIC</button>
-            <button data-filter="bnu">BNU</button>
-            <button data-filter="lamenuiserie">La Menuiserie</button>
+            <button data-filter="shadok"><span></span> Shadok</button>
+            <button data-filter="hear"><span></span> HEAR</button>
+            <button data-filter="garagecoop"><span></span> Garage COOP</button>
+            <button data-filter="palaisuniversitaire"><span></span> Palais universitaire</button>
+            <button data-filter="cric"><span></span> CRIC</button>
+            <button data-filter="bnu"><span></span> BNU</button>
+            <button data-filter="lamenuiserie"><span></span> La Menuiserie</button>
         </div>
     </div>
 
@@ -44,10 +44,10 @@
             <h3>Événements</h3>
         </div>
         <div class="filter-list">
-            <button data-filter="conferences">Conférences</button>
-            <button data-filter="expositions">Expositions</button>
-            <button data-filter="salongraphique">Salon graphique</button>
-            <button data-filter="ateliers">Ateliers</button>
+            <button data-filter="conferences"><span></span> Conférences</button>
+            <button data-filter="expositions"><span></span> Expositions</button>
+            <button data-filter="salongraphique"><span></span> Salon graphique</button>
+            <button data-filter="ateliers"><span></span> Ateliers</button>
         </div>
     </div>
 
@@ -55,75 +55,3 @@
         <button data-filter="all">Tous <svg fill="none" height="12" viewBox="0 0 13 12" width="13" xmlns="http://www.w3.org/2000/svg"><path d="m9.96233 6.74989h-9.128682v-1.5h9.128682l-4.02298-4.02297 1.06065-1.06066 5.8336 5.83363-5.8336 5.83361-1.06065-1.0606z" fill="#000"/></svg></button>
     </div>
 </div>
-
-<style>
-    #filter-menu {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 888;
-        font-size: 15px;
-        background-color: #fff;
-        border-top: .5px solid rgba(0,0,0,.9);
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .filter-block {
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        text-align: left;
-    }
-
-    .filter-trigger {
-        display: flex;
-        align-items: center;
-        padding: 8px 0 16px;
-        cursor: pointer;
-    }
-
-    .filter-trigger span {
-        margin-right: 8px;
-        transition: .3s transform;
-    }
-
-    .filter-trigger.is-active span {
-        transform: rotate(180deg);
-    }
-
-    .filter-list {
-        display: none; /* Cacher les listes par défaut */
-        flex-direction: column;
-        position: absolute;
-        top: -8px;
-        transform: translateY(-100%);
-        width: 254px;
-        padding: 4px 16px;
-        line-height: 1.75em;
-        background-color: #fff;
-    }
-
-    .filter-trigger.is-active + .filter-list {
-        display: flex; /* Afficher la liste de filtres quand .filter-trigger est active */
-    }
-
-    .filter-list button,
-    .filter-all button {
-        background-color: transparent;
-        text-align: left;
-        cursor: pointer;
-    }
-
-    .filter-all button {
-        display: flex;
-        align-items: center;
-        padding: 8px 0 16px;
-    }
-
-    .filter-all button svg {
-        margin-left: 8px;
-    }
-
-</style>
