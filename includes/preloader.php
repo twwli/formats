@@ -26,7 +26,7 @@ body.loaded #preloader {
 
 </style>
 
-<script>
+<!-- <script>
   document.addEventListener('DOMContentLoaded', function () {
     if (!localStorage.getItem('preloaderShown')) {
       var animation = lottie.loadAnimation({
@@ -55,7 +55,34 @@ body.loaded #preloader {
       document.body.classList.add('loaded');
     }
   });
+</script> -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var animation = lottie.loadAnimation({
+      container: document.getElementById('lottie-animation'),
+      renderer: 'svg',
+      loop: false,
+      autoplay: true,
+      path: '<?php echo get_template_directory_uri(); ?>/library/animation.json'
+    });
+
+    document.body.classList.add('loading');
+
+    animation.addEventListener('complete', function () {
+      document.body.classList.remove('loading');
+      document.body.classList.add('loaded');
+    });
+
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        document.body.classList.remove('loading');
+        document.body.classList.add('loaded');
+      }, 2000);
+    });
+  });
 </script>
+
 
 
 
