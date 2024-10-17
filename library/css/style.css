@@ -634,7 +634,10 @@ Flip Cards
 
 }
 
-.filter-list button.active,
+.filter-list button.active {
+  color: #015AFF;
+}
+
 .filter-list button.active span{
   background-color: #015AFF;
 }

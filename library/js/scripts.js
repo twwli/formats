@@ -162,34 +162,36 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   }
 
+ 
   // Fonction pour afficher les cartes correspondant aux catégories sélectionnées
-  function filterCards() {
-      console.log("Selected categories:", selectedCategories); // Debugging
+function filterCards() {
+  console.log("Selected categories:", selectedCategories); // Debugging
 
-      document.querySelectorAll('.card-container').forEach(card => {
-          const categoriesAttr = card.getAttribute('data-categories');
-          if (categoriesAttr) {
-              const categories = categoriesAttr.split(',');
+  document.querySelectorAll('.card-container').forEach(card => {
+      const categoriesAttr = card.getAttribute('data-categories');
+      if (categoriesAttr) {
+          // Découper les catégories et supprimer les espaces autour
+          const categories = categoriesAttr.split(',').map(category => category.trim());
 
-              // Si "all" est sélectionné ou aucune catégorie n'est activée, afficher toutes les cartes
-              if (selectedCategories.includes('all') || selectedCategories.length === 0) {
-                  card.style.display = 'block';
-                  return;
-              }
-
-              // Vérifier si la carte correspond à au moins une des catégories sélectionnées
-              const matchesCategory = selectedCategories.some(category => categories.includes(category));
-
-              if (matchesCategory) {
-                  card.style.display = 'block'; // Afficher la carte si elle correspond à au moins une catégorie
-              } else {
-                  card.style.display = 'none'; // Cacher la carte sinon
-              }
-          } else {
-              card.style.display = 'none'; // Cacher la carte si elle n'a pas de catégories
+          // Si "all" est sélectionné ou aucune catégorie n'est activée, afficher toutes les cartes
+          if (selectedCategories.includes('all') || selectedCategories.length === 0) {
+              card.style.display = 'block';
+              return;
           }
-      });
-  }
+
+          // Vérifier si la carte correspond à au moins une des catégories sélectionnées
+          const matchesCategory = selectedCategories.some(category => categories.includes(category));
+
+          if (matchesCategory) {
+              card.style.display = 'block'; // Afficher la carte si elle correspond à au moins une catégorie
+          } else {
+              card.style.display = 'none'; // Cacher la carte sinon
+          }
+      } else {
+          card.style.display = 'none'; // Cacher la carte si elle n'a pas de catégories
+      }
+  });
+}
 
   // Gestion du clic sur les boutons de filtre dans les listes
   document.querySelectorAll('.filter-list button').forEach(button => {
@@ -229,6 +231,11 @@ document.addEventListener('DOMContentLoaded', function () {
 /* Open iframes */
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Stocker l'URL originale de chaque iframe
+  document.querySelectorAll('iframe').forEach(iframe => {
+    iframe.setAttribute('data-src', iframe.src);
+  });
+
   // Écouter les événements de clic sur les boutons "More info"
   document.querySelectorAll('.open-details').forEach(button => {
     button.addEventListener('click', function () {
@@ -238,6 +245,13 @@ document.addEventListener('DOMContentLoaded', function () {
       // Ouvrir la div correspondante
       if (targetDiv) {
         targetDiv.classList.add('active');
+
+        // Restaurez l'URL originale de l'iframe
+        const iframe = targetDiv.querySelector('iframe');
+        if (iframe) {
+          const originalSrc = iframe.getAttribute('data-src');
+          iframe.src = originalSrc;
+        }
       }
     });
   });
@@ -251,6 +265,12 @@ document.addEventListener('DOMContentLoaded', function () {
       // Fermer la div correspondante
       if (targetDiv) {
         targetDiv.classList.remove('active');
+
+        // Réinitialisez l'attribut src de l'iframe pour arrêter la vidéo
+        const iframe = targetDiv.querySelector('iframe');
+        if (iframe) {
+          iframe.src = '';
+        }
       }
     });
   });
