@@ -3,27 +3,35 @@
 </div>
 
 <style>
-	#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease-in; /* Transition pour l'effet de fondu */
+    opacity: 1;
+  }
 
-body.loading #preloader {
-  display: flex;
-}
+  body.loading #preloader {
+    opacity: 1;
+  }
 
-body.loaded #preloader {
-  display: none;
-}
+  body.loaded #preloader {
+    opacity: 0; /* Commence à disparaître */
+    pointer-events: none; /* Désactiver les interactions */
+    transition: opacity 1s ease-in; /* Transition pour l'effet de fondu */
+  }
 
+  body.loaded {
+    transition: opacity 1s ease-in;
+    opacity: 1; /* Le site devient visible avec une transition */
+  }
 </style>
 
 <!-- <script>
