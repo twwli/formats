@@ -2,7 +2,7 @@
     if( $value ) { ?>
     <?php while( have_rows('front_card') ): the_row(); ?>
         <div class="card-container" data-id="card<?php echo get_the_ID(); ?>" data-categories="<?php $tags = get_sub_field( 'tags_card' ); if( $tags ): echo implode( ', ', $tags ); endif; ?>" style="<?php $value = get_sub_field('position_card');
-    if( $value ) { ?><?php while( have_rows('position_card') ): the_row(); ?>position: absolute; top: <?php the_sub_field('top_position'); ?>px;left: <?php the_sub_field('left_position'); ?>px;<?php endwhile; ?><?php } ?>transform: rotate(<?php the_sub_field('angle_card'); ?>deg)">
+    if( $value ) { ?><?php while( have_rows('position_card') ): the_row(); ?>position: absolute; top: <?php the_sub_field('top_position'); ?>px; left: <?php the_sub_field('link_position'); ?>px;<?php endwhile; ?><?php } ?>transform: rotate(<?php the_sub_field('angle_card'); ?>deg)">
             <div class="card-content" style="width: <?php the_sub_field('width_card'); ?>px; height: <?php the_sub_field('height_card'); ?>px;">
             <div class="card-front">
                 
