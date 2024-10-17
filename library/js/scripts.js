@@ -11,11 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let zIndexCounter = 1; // Compteur global pour z-index, commence à 1
   const delay = 300; // Délai en millisecondes pour la fermeture des cartes
 
-  // Initialisation du z-index de toutes les cartes pour qu'elles démarrent toutes avec une valeur valide
-  cardContainers.forEach((cardContainer, index) => {
-    cardContainer.style.zIndex = index + 1; // Chaque carte démarre avec un z-index unique
-  });
-
   // Fonction pour sauvegarder la position dans le localStorage
   function savePosition(cardContainer) {
     const cardId = cardContainer.getAttribute('data-id');
@@ -53,7 +48,20 @@ document.addEventListener('DOMContentLoaded', function () {
   // Appliquer la position stockée pour chaque carte au chargement
   cardContainers.forEach(cardContainer => {
     restorePosition(cardContainer);
+  });
 
+  // Après avoir restauré les positions, trouver le z-index maximal
+  let maxZIndex = 0;
+  cardContainers.forEach(cardContainer => {
+    const zIndex = parseInt(cardContainer.style.zIndex, 10);
+    if (zIndex > maxZIndex) {
+      maxZIndex = zIndex;
+    }
+  });
+  zIndexCounter = maxZIndex;
+
+  // Ajouter les écouteurs d'événements après la restauration
+  cardContainers.forEach(cardContainer => {
     // Gestion du flip des cartes
     cardContainer.addEventListener('click', function (e) {
       if (e.target.tagName === 'BUTTON') {
@@ -105,8 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-
-
 
 /* Filtre */
 

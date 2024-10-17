@@ -10,7 +10,7 @@
 				$image = get_sub_field('image_recto');
 				$size = 'full';
 				if( $image ) {
-					echo wp_get_attachment_image( $image, $size, false, array( 'class' => 'project-img', 'loading' => '' ) );
+					echo wp_get_attachment_image( $image, $size, false, array( 'class' => 'project-img', 'loading' => 'lazy' ) );
 				}
 				?>
                 
