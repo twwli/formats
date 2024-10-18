@@ -962,6 +962,10 @@ Theme Media Queries
       transform: none;
     }
 
+    .filter-trigger {
+      padding: 8px 0;
+    }
+
     /* About Page */
 
     .page-content {

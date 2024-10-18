@@ -8,31 +8,44 @@
 
 <main class="cards-wrapper">
     <?php
+    // Vérifier si l'utilisateur est sur un appareil mobile
+    $is_mobile = wp_is_mobile();
+
+    // Définir les arguments de la requête
     $args = array(
-        'post_type' => 'custom_card',
-        'posts_per_page' => -9999,
-        'no_found_rows'  => true, // We don't need pagination, this speeds up the query
+        'post_type'      => 'custom_card',
+        'posts_per_page' => -1,
+        'no_found_rows'  => true, // Pas de pagination nécessaire, cela accélère la requête
     );
-      
+
+    // Si c'est un mobile, ajouter 'orderby' => 'rand' pour un ordre aléatoire
+    if ( $is_mobile ) {
+        $args['orderby'] = 'rand';
+    }
+
     $wp_query = new WP_Query($args);
 
     if ( $wp_query->have_posts() ) :
-    while ( $wp_query->have_posts() ) : $wp_query->the_post();  ?> 
+        while ( $wp_query->have_posts() ) : $wp_query->the_post();  
 
-    <?php
-    // Récupérer la valeur du champ select 'carte_type'
-    $carte_type = get_field('carte_type');
+        // Récupérer la valeur du champ select 'carte_type'
+        $carte_type = get_field('carte_type');
 
-    // Vérifier la valeur sélectionnée et charger le template correspondant
-    if ($carte_type == 'image') {
-        get_template_part('includes/card', 'image');
-    } elseif ($carte_type == 'video') {
-        get_template_part('includes/card', 'video');
-    }
+        // Vérifier la valeur sélectionnée et charger le template correspondant
+        if ($carte_type == 'image') {
+            get_template_part('includes/card', 'image');
+        } elseif ($carte_type == 'video') {
+            get_template_part('includes/card', 'video');
+        }
+
+        endwhile; 
+        rewind_posts(); 
+        wp_reset_query(); 
+    endif; 
     ?>
-        
-    <?php endwhile; rewind_posts(); wp_reset_query(); endif; ?>
-    <?php if (!wp_is_mobile()) : get_template_part('/includes/iframes'); endif; ?>
+
+    <?php if ( ! $is_mobile ) : get_template_part('/includes/iframes'); endif; ?>
 </main>
+
 <?php get_template_part('/includes/filter'); ?>
 <?php get_footer(); ?>

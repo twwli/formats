@@ -55,7 +55,7 @@
       setTimeout(function () {
         document.body.classList.remove('loading');
         document.body.classList.add('loaded');
-      }, 2000);
+      }, 3000);
     });
   });
 </script>
