@@ -52,7 +52,7 @@
 			<div class="img-col">
 				<img loading="lazy" class="rectangle-2" src="https://c.animaapp.com/RaG1aIGc/img/rectangle-7@2x.png" />
             </div>
-			<div class="img-col">
+			<div class="img-col img-col-last">
 				<img loading="lazy" class="img" src="https://c.animaapp.com/RaG1aIGc/img/rectangle-3@2x.png" />
             </div>
 			<div class="line-div line-bottom"></div> 
@@ -88,7 +88,7 @@
 				<div class="img-col">
 					<img loading="lazy" class="rectangle-5" src="https://c.animaapp.com/RaG1aIGc/img/rectangle-46@2x.png" />
                 </div>
-				<div class="img-col">
+				<div class="img-col img-col-last">
 					<img loading="lazy" class="rectangle-6" src="https://c.animaapp.com/RaG1aIGc/img/rectangle-44@2x.png" />
 				</div>
 				<div class="line-div line-bottom"></div> 

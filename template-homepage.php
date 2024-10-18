@@ -7,7 +7,6 @@
 <?php get_header(); ?>
 
 <main class="cards-wrapper">
-
     <?php
     $args = array(
         'post_type' => 'custom_card',
@@ -33,9 +32,7 @@
     ?>
         
     <?php endwhile; rewind_posts(); wp_reset_query(); endif; ?>
-
-    <?php get_template_part('/includes/iframes'); ?>
-    <?php get_template_part('/includes/filter'); ?>
-
+    <?php if (!wp_is_mobile()) : get_template_part('/includes/iframes'); endif; ?>
 </main>
+<?php get_template_part('/includes/filter'); ?>
 <?php get_footer(); ?>
