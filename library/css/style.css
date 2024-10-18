@@ -455,11 +455,23 @@ header {
   left: 0;
   z-index: 999;
   border-bottom: .5px solid rgba(0, 0, 0, .9);
+  backdrop-filter: saturate(180%) blur(10px);
+  background: rgba(255, 255, 255, .25);
   pointer-events: none;
 }
 
-header a {
+#home-link,
+#info-link {
+  margin-right: 30px;
   pointer-events: all;
+}
+
+#info-page #info-link {
+  display: none;
+}
+
+.home #home-link {
+  display: none;
 }
 
 footer {
@@ -688,6 +700,164 @@ Flip Cards
 }
 
 /* ==========================================================================
+About Page
+========================================================================== */
+
+#info-page {
+	overflow: visible;
+	height: auto;
+}
+
+.page-content {
+	padding: 200px 50px 100px;
+	overflow: hidden;
+}
+
+.one-half {
+	width: calc(50% - 50px);
+}
+
+.one-half img {
+	margin-top: 50px;
+}
+
+.two-third {
+	width: 66.6666%;
+}
+
+.img-row {
+	padding: 28px 0;
+	margin: 50px 0 100px;
+}
+
+.img-row .img-col {
+	margin-right: 50px;
+}
+
+.img-row .img-col:last-of-type {
+	margin-right: 0;
+}
+
+section {
+	position: relative;
+}
+
+.line-div {
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 3px;
+	background: #000;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.line-top {
+	position: absolute;
+	top: 18px;
+	left: -50px;
+	right: -50px;
+	width: calc(100% + 100px);
+	z-index: -1;
+}
+
+.line-left {
+	top: 18px;
+	left: -10px;
+	width: 3000px;
+	transform: translateX(-100%);
+	z-index: -1;
+}
+
+.line-right {
+	top: 18px;
+	right: 0;
+	width: 3000px;
+	transform: translateX(100%);
+}
+
+.img-row .line-div {
+	width: 50%;
+}
+
+.img-row .line-div.line-top {
+	top: 0;
+	left: -50px;
+	right: auto;
+}
+
+.img-row .line-div.line-bottom {
+	top: auto;
+	bottom: 0;
+	right: -50px;
+	left: auto;
+}
+
+.section-header {
+	display: inline-block;
+	position: relative;
+}
+
+.section-header h1 {
+	display: inline-block;
+	padding: 0 10px ;
+	margin-left: -10px;
+	margin-bottom: .5em;
+	font-size: 2em;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	text-transform: uppercase;
+}
+
+section p {
+	font-size: .95em;
+	margin-bottom: 1em;
+}
+
+section p:last-of-type {
+	margin-bottom: 0;
+} 
+
+.flex {
+	position: relative;
+	display: flex;
+}
+
+.space-between {
+	justify-content: space-between;
+}
+
+.wrap {
+	flex-wrap: wrap;
+}
+
+.team-member {
+	width: calc(33.3333% - 120px);
+	margin: 0 60px;
+	text-align: center;
+	font-size: 1.25em;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+
+.team-member.team-large {
+	width: 50%;
+}
+
+.team-name {
+	padding: 10px 0 20px;
+}
+
+.bg-letter {
+	position: absolute;
+	top: 150px;
+	left: 0;
+	z-index: -1;
+}
+
+/* ==========================================================================
 Theme Media Queries
 ========================================================================== */
 
@@ -739,6 +909,46 @@ Theme Media Queries
       top: auto !important;
       left: 50% !important;
       transform: translateX(-50%);
+      margin: 0 auto;
+    }
+
+    header {
+      height: 60px;
+    }
+
+    #logo svg {
+      width: 200px;
+    }
+
+    #info-link {
+      margin-right: 0;
+    }
+
+    /* About Page */
+
+    .page-content {
+      padding: 120px 20px 80px;
+      overflow: hidden;
+    }
+
+    .page-content .flex {
+      display: block;
+    }
+
+    .page-content .one-half {
+      width: 100%;
+    }
+
+    .img-row > .img-col {
+      margin: 0 0 25px;
+    }
+
+    .one-half img {
+      margin: 50px 0;
+    }
+
+    .team-member {
+      width: 50%;
       margin: 0 auto;
     }
 }
